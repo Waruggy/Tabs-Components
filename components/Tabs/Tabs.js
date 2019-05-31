@@ -2,7 +2,7 @@ class TabLink {
     constructor(element) {
         // Assign this.element to the passed in DOM element
         // this.element;
-        this.element = "element";
+        this.element = element;
 
         // Get the custom data attribute on the Link
         // this.data;
@@ -17,8 +17,8 @@ class TabLink {
         this.tabItem = new TabItem(this.itemElement);
 
         // Add a click event listener on this instance, calling the select method on click
-        this.element.addEventListener('click', () => this.select());
-    }
+        this.element.addEventListener('click', () => this.select())
+    };
 
     select() {
         // Get all of the elements with the tabs-link class
@@ -53,14 +53,17 @@ class TabItem {
         const items = document.querySelectorAll('.tabs-item');
 
         // Remove the class "tabs-item-selected" from each element
-        this.element.classList.remove('tabs-item-selected');
-    };
+        Array.from(items).forEach(item => {
+            item.classList.remove('tabs-link-selected')
+        });
 
-    // Add a class named "tabs-item-selected" to this element
-    //this.element;
-    this.element.classList.add('tabs-item-selected');
+
+        // Add a class named "tabs-item-selected" to this element
+        //this.element;
+        this.element.classList.add('tabs-item-selected');
+    }
 }
-}
+
 
 /* START HERE: 
 
@@ -73,4 +76,4 @@ class TabItem {
 */
 
 links = document.querySelectorAll('.tabs-link').forEach(link =>
-    return new TabLink(link));
+    new TabLink(link));
